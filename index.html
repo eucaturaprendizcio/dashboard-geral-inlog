@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inlog · Dashboard de Frota</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TELA DE CARREGAMENTO -->
+<!-- Coloque sua imagem de fundo em .loading-bg (background-image no style.css) -->
+<div id="loading-screen">
+  <div class="loading-bg"></div>
+  <div class="loading-overlay"></div>
+  <div class="loading-box">
+    <div class="loading-ring"></div>
+    <p class="loading-title">Inlog Frota</p>
+    <p class="loading-sub" id="loading-sub">Carregando dados da planilha…</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <div>
+        <h1>Dashboard Geral</h1>
+        <p>Frota Inlog · dados em tempo real da planilha</p>
+      </div>
+    </div>
+    <div class="topbar-meta" id="last-update"></div>
+  </header>
+
+  <main>
+    <section class="cards-grid" id="cards-grid"></section>
+
+    <section class="table-section">
+      <div class="table-header">
+        <h2>Veículos</h2>
+        <input type="search" id="search-input" placeholder="Buscar por prefixo ou empresa…">
+      </div>
+
+      <div class="filters" id="filters"></div>
+
+      <div class="table-wrap">
+        <table id="veiculos-table">
+          <thead>
+            <tr>
+              <th>Prefixo</th>
+              <th>Empresa</th>
+              <th>Serviço</th>
+              <th>Situação</th>
+              <th>Rastreador</th>
+              <th>Última Conexão</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <p class="table-count" id="table-count"></p>
+    </section>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
