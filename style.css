@@ -46,7 +46,6 @@ body {
     pointer-events: none;
 }
 
-/* Troque por: background:url('sua-imagem.jpg') center/cover no-repeat; */
 .loading-bg {
     position: absolute;
     inset: 0;
@@ -158,6 +157,7 @@ main {
 }
 
 .card {
+    cursor: pointer;
     background:
         linear-gradient(155deg, rgba(18, 24, 31, .88) 0%, rgba(23, 30, 38, .94) 100%),
         var(--card-img, none) center/cover no-repeat,
@@ -174,6 +174,10 @@ main {
     border-color: color-mix(in srgb, var(--card-color, var(--accent)) 45%, var(--border));
 }
 
+.card.is-active {
+    border-color: var(--card-color, var(--accent));
+    box-shadow: 0 0 0 1px var(--card-color, var(--accent));
+}
 
 .card::after {
     content: "";
@@ -187,7 +191,6 @@ main {
     opacity: .35;
     filter: blur(22px);
     mix-blend-mode: screen;
-    /* mantém a bolinha visível por cima da imagem */
     pointer-events: none;
 }
 
@@ -245,6 +248,76 @@ main {
     font-family: 'Inter', sans-serif;
 }
 
+/* ============ HOVER OVERLAY (botão Visualizar) ============ */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(11, 15, 20, .55);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: scale(.96);
+    transition: opacity .22s ease, transform .22s ease;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: var(--radius);
+}
+
+.card:hover .card-overlay {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.card-view-btn {
+    background: var(--card-color, var(--accent));
+    color: #0b0f14;
+    border: none;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .35);
+    transition: transform .15s ease;
+}
+
+.card-view-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ============ CHIP DE FILTRO ATIVO ============ */
+.active-filter-chip {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    background: var(--panel-2);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    font-family: 'Inter', sans-serif;
+}
+
+.active-filter-chip.show {
+    display: inline-flex;
+}
+
+.active-filter-chip button {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1;
+}
+
 /* ================= TABLE SECTION ================= */
 .table-section {
     background: var(--panel);
@@ -287,7 +360,7 @@ main {
 
 #search-input:focus {
     outline: none;
-    border-color: var(--accent); 
+    border-color: var(--accent);
 }
 
 .filters {
